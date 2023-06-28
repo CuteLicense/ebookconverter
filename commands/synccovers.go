@@ -15,6 +15,23 @@ import (
 	"fb2converter/state"
 )
 
+func PathExists(path string) (bool, error) {
+    /*
+    判断文件或文件夹是否存在
+    如果返回的错误为nil,说明文件或文件夹存在
+    如果返回的错误类型使用os.IsNotExist()判断为true,说明文件或文件夹不存在
+    如果返回的错误为其它类型,则不确定是否在存在
+    */
+    _, err := os.Stat(path)
+    if err == nil {
+        return true, nil
+    }
+    if os.IsNotExist(err) {
+        return false, nil
+    }
+    return false, err
+}
+
 // SyncCovers reads books in Kindle formats and produces thumbnails for them. Very Kindle specific.
 func SyncCovers(ctx *cli.Context) error {
 
@@ -58,11 +75,11 @@ func SyncCovers(ctx *cli.Context) error {
 			break
 		}
 	}
-	if len(sysdir) == 0 {
+	if !PathExists(sysdir) {
 		//文件的目录名，取同电子书相同文件夹
 		sysdir = dir
 	}
-	env.Log.Info("Thumbnail will extract to: ", zap.String("directory ", sysdir))
+	env.Log.Info("Thumbnail will extract to: ", zap.String("Directory ", sysdir))
 	if len(sysdir) == 0 {
 		return cli.Exit(errors.New(errPrefix+"unable to find Kindle system directory along the specified path"), errCode)
 	}
