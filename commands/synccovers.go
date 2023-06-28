@@ -75,7 +75,8 @@ func SyncCovers(ctx *cli.Context) error {
 			break
 		}
 	}
-	if !PathExists(sysdir) {
+	exists, err := PathExists(sysdir)
+	if !exists {
 		//文件的目录名，取同电子书相同文件夹
 		sysdir = dir
 	}
