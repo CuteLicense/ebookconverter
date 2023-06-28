@@ -59,9 +59,14 @@ func SyncCovers(ctx *cli.Context) error {
 		}
 	}
 	if len(sysdir) == 0 {
+		//文件的目录名，取同电子书相同文件夹
+		sysdir = dir
+	}
+	if len(sysdir) == 0 {
 		return cli.Exit(errors.New(errPrefix+"unable to find Kindle system directory along the specified path"), errCode)
 	}
 
+	
 	files, count := 0, 0
 
 	makeThumb := func(file, path string) error {
