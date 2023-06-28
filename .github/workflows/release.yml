@@ -3,11 +3,15 @@ name: fb2converter release
 on:
   create:
     tags:
-    - "v1.8.1"
+    - "v*.*.*"
   push:
     branches: [ "master" ]
     tags:
-    - "v1.8.1"
+    - "v*.*.*"
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
     
 permissions:
   contents: write
