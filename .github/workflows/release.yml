@@ -70,7 +70,8 @@ jobs:
       run: |
         git config --global user.email "taobao2012id1@163.com"
         git config --global user.name "CuteLicense"
-        TAG=v$(date -Iseconds | sed 's/[T:\+]/-/g')
+        #TAG=v$(date -Iseconds | sed 's/[T:\+]/-/g')
+        TAG=v$(TZ=UTC-8 date +%F | sed 's/-//g'``date +%T | sed 's/://g')
         echo "$TAG"
         echo "tag=$TAG" >> $GITHUB_OUTPUT
         git tag -a $TAG -m "Published version $TAG" ${GITHUB_SHA}
