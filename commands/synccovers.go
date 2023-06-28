@@ -62,6 +62,7 @@ func SyncCovers(ctx *cli.Context) error {
 		//文件的目录名，取同电子书相同文件夹
 		sysdir = dir
 	}
+	env.Log.Info("Thumbnail will extract to: ", sysdir)
 	if len(sysdir) == 0 {
 		return cli.Exit(errors.New(errPrefix+"unable to find Kindle system directory along the specified path"), errCode)
 	}
