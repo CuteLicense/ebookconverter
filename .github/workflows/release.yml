@@ -69,7 +69,6 @@ jobs:
     - name: Tag the repository
       id: tag
       run: |
-        # See https://docs.github.com/en/get-started/using-git/dealing-with-special-characters-in-branch-and-tag-names
         TAG=v$(date -Iseconds | sed 's/[T:\+]/-/g')
         echo "$TAG"
         echo "tag=$TAG" >> $GITHUB_OUTPUT
