@@ -70,6 +70,7 @@ jobs:
       id: tag
       run: |
         git config --global user.email "taobao2012id1@163.com"
+        git config --global user.name "CuteLicense"
         TAG=v$(date -Iseconds | sed 's/[T:\+]/-/g')
         echo "$TAG"
         echo "tag=$TAG" >> $GITHUB_OUTPUT
