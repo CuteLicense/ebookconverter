@@ -4,7 +4,7 @@ on:
   create:
     tags:
     - "v1.8.1"
-  pull:
+  push:
     branches: [ "master" ]
     tags:
     - "v1.8.1"
